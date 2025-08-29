@@ -2,5 +2,5 @@ exec exec_test_api {
     wait = yes
     input_pairs = request
     output_pairs = reply
-    program = "/usr/bin/python3 /etc/freeradius/3.0/scripts/test_api_exec.py"
+    program = "/etc/freeradius/3.0/scripts/test_api_exec.py"
 }

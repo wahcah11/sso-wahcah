@@ -13,3 +13,7 @@ curl -X POST "http://keycloak:8080/realms/cakrawala/protocol/openid-connect/toke
   -H "Content-Type: application/json" \
   -d '{"User-Name": "admin", "User-Password": "admin"}'
 
+
+---
+test manual radius
+echo -e 'User-Name := "admin"\nUser-Password := "admin"' | /usr/bin/python3 /etc/freeradius/3.0/scripts/test_api_exec.py
