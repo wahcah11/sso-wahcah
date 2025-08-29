@@ -11,18 +11,7 @@ services:
     restart: unless-stopped
     networks:
       - sso_network
-  # nginx:
-  #     build:
-  #       context: ./nginx
-  #     container_name: sso_nginx
-  #     restart: unless-stopped
-  #     ports:
-  #       - "80:80"
-  #       - "443:443"
-  #     networks:
-  #       - sso_network
-  #     depends_on:
-  #       - keycloak
+ 
   keycloak:
     # --- MENGGUNAKAN VERSI YANG ANDA MINTA ---
     image: quay.io/keycloak/keycloak:24.0.3
@@ -47,21 +36,6 @@ services:
     networks:
       - sso_network
 
-  radius-bridge:
-    build:
-      context: ./radius-bridge
-    container_name: sso_radius_bridge
-    environment:
-      - KEYCLOAK_URL=http://keycloak:8080
-      - KEYCLOAK_REALM=cakrawala
-      - KEYCLOAK_CLIENT_ID=cakrawala_client
-      - KEYCLOAK_CLIENT_SECRET=b7p3WOmBgpYPhGC0NYBzn7oPvZFyynoD
-    restart: unless-stopped
-    networks:
-      - sso_network
-    depends_on:
-      - keycloak
-
   freeradius:
     build:
       context: ./freeradius-build
@@ -69,11 +43,11 @@ services:
     ports:
       - "1812:1812/udp"
       - "1813:1813/udp"
-    # volumes:
-      # - ./freeradius-build/freeradius-config/mods-available/exec_test:/etc/freeradius/3.0/mods-available/exec_test
-      # - ./freeradius-build/freeradius-config/sites-available/default:/etc/freeradius/3.0/sites-available/default
-    depends_on:
-      - radius-bridge
+    environment:
+      - KEYCLOAK_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=cakrawala
+      - KEYCLOAK_CLIENT_ID=cakrawala_client
+      - KEYCLOAK_CLIENT_SECRET=b7p3WOmBgpYPhGC0NYBzn7oPvZFyynoD
     restart: unless-stopped
     networks:
       - sso_network

@@ -17,3 +17,9 @@ curl -X POST "http://keycloak:8080/realms/cakrawala/protocol/openid-connect/toke
 ---
 test manual radius
 echo -e 'User-Name := "admin"\nUser-Password := "admin"' | /usr/bin/python3 /etc/freeradius/3.0/scripts/test_api_exec.py
+
+
+sys.stderr.write(f"Wahyu {sys.stdin} Cahyo Utomo\n")
+
+
+radtest testuser testing123 localhost 0 testing123

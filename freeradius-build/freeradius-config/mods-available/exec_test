@@ -2,5 +2,9 @@ exec exec_test_api {
     wait = yes
     input_pairs = request
     output_pairs = reply
-    program = "/etc/freeradius/3.0/scripts/test_api_exec.py"
+    program = "/usr/bin/python3 /etc/freeradius/3.0/scripts/test_api_exec.py"
+
+    # Tambahkan baris ini:
+    #shell_escape = yes
+    #pass_all_requests_to_program = yes
 }
