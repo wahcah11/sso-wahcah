@@ -1,0 +1,87 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: sso_postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak_db
+      POSTGRES_USER: keycloak_user
+      POSTGRES_PASSWORD: your_strong_password
+    restart: unless-stopped
+    networks:
+      - sso_network
+  # nginx:
+  #     build:
+  #       context: ./nginx
+  #     container_name: sso_nginx
+  #     restart: unless-stopped
+  #     ports:
+  #       - "80:80"
+  #       - "443:443"
+  #     networks:
+  #       - sso_network
+  #     depends_on:
+  #       - keycloak
+  keycloak:
+    # --- MENGGUNAKAN VERSI YANG ANDA MINTA ---
+    image: quay.io/keycloak/keycloak:24.0.3
+    # ----------------------------------------
+    container_name: sso_keycloak
+    depends_on:
+      - postgres
+    environment:
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres
+      KC_DB_URL_DATABASE: keycloak_db
+      KC_DB_USERNAME: keycloak_user
+      KC_DB_PASSWORD: your_strong_password
+      KEYCLOAK_ADMIN: admin 
+      KEYCLOAK_ADMIN_PASSWORD: your_admin_password
+      # --- TAMBAHKAN BARIS INI ---
+      # KC_HOSTNAME: sso.cakrawala.local
+    ports:
+      - "8080:8080"
+    command: start-dev
+    restart: unless-stopped
+    networks:
+      - sso_network
+
+  radius-bridge:
+    build:
+      context: ./radius-bridge
+    container_name: sso_radius_bridge
+    environment:
+      - KEYCLOAK_URL=http://keycloak:8080
+      - KEYCLOAK_REALM=cakrawala
+      - KEYCLOAK_CLIENT_ID=cakrawala_client
+      - KEYCLOAK_CLIENT_SECRET=b7p3WOmBgpYPhGC0NYBzn7oPvZFyynoD
+    restart: unless-stopped
+    networks:
+      - sso_network
+    depends_on:
+      - keycloak
+
+  freeradius:
+    build:
+      context: ./freeradius-build
+    container_name: sso_freeradius
+    ports:
+      - "1812:1812/udp"
+      - "1813:1813/udp"
+    # volumes:
+      # - ./freeradius-build/freeradius-config/mods-available/exec_test:/etc/freeradius/3.0/mods-available/exec_test
+      # - ./freeradius-build/freeradius-config/sites-available/default:/etc/freeradius/3.0/sites-available/default
+    depends_on:
+      - radius-bridge
+    restart: unless-stopped
+    networks:
+      - sso_network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  sso_network:
+    driver: bridge

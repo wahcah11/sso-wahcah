@@ -1,0 +1,87 @@
+server default {
+
+    listen {
+        type = auth
+        ipaddr = *
+        port = 1812
+    }
+
+    listen {
+        type = acct
+        ipaddr = *
+        port = 1813
+    }
+
+    authorize {
+        preprocess
+        chap
+        mschap
+        suffix
+        files
+        # Panggil modul REST
+        #rest
+
+        # Auto Access-Accept jika REST sukses
+        #if ("&reply:Rest-Status" == 200) {
+        #    update reply {
+        #        Reply-Message := "REST API Authorized"
+        #    }
+        #    ok
+        #}
+        exec_test_api
+        if (!Auth-Type) {
+                update control {
+                Auth-Type := Accept
+                }
+        }
+
+    }
+
+    authenticate {
+        Auth-Type PAP {
+            pap
+        }
+        Auth-Type CHAP {
+            chap
+        }
+        Auth-Type MS-CHAP {
+            mschap
+        }
+    }
+
+    post-auth {
+        # log hasil authenticate
+        #
+        # bisa tambahkan tindakan lain seperti acct, exec, dll
+    }
+
+    accounting {
+        detail
+        unix
+    }
+
+    session {
+    }
+
+    preacct {
+    }
+
+    eap {
+        default_eap_type = peap
+        timer_expire     = 60
+        ignore_unknown_eap_types = no
+        cisco_accounting_username_bug = no
+    }
+
+    limits {
+    }
+
+    linelog {
+    }
+
+    detail {
+    }
+
+    sradutmp {
+    }
+}

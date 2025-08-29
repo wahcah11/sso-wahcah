@@ -1,0 +1,17 @@
+# Gunakan image dasar Python yang ringan
+FROM python:3.9-slim
+
+# Tetapkan direktori kerja di dalam kontainer
+WORKDIR /app
+
+# Salin file daftar dependensi
+COPY requirements.txt .
+
+# Instal dependensi Python
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Salin skrip aplikasi utama
+COPY radius_bridge.py .
+
+# Perintah untuk menjalankan aplikasi saat kontainer dimulai
+CMD ["python", "radius_bridge.py"]
