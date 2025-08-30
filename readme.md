@@ -18,8 +18,29 @@ curl -X POST "http://keycloak:8080/realms/cakrawala/protocol/openid-connect/toke
 test manual radius
 echo -e 'User-Name := "admin"\nUser-Password := "admin"' | /usr/bin/python3 /etc/freeradius/3.0/scripts/test_api_exec.py
 
-
+logs:
 sys.stderr.write(f"Wahyu {sys.stdin} Cahyo Utomo\n")
 
 
 radtest testuser testing123 localhost 0 testing123
+
+
+---
+SETTING GRUP PENTING !!!
+1. Login -> pilih realm -> Menu Clients Scope -> Create : name (openid)
+2. Lanjutan langkah 1 -> tab Mapper -> add -> type : Group Membership, name : groups, Token Claim Name : groups
+3. save
+4. menu client -> pilih client yang dibuat -> tab client scopes -> add -> masukan openid yang dibuat dilagkah 1
+
+reference :
+https://keycloak.discourse.group/t/issue-on-userinfo-endpoint-at-keycloak-20/18461/12
+
+
+---
+Keycloack login : http://localhost:8080/realms/cakrawala/protocol/openid-connect/auth?client_id=cakrawala_client&response_type=code
+
+Keycloack login + redirect : http://localhost:8080/realms/cakrawala/protocol/openid-connect/auth?client_id=cakrawala_client&response_type=code&redirect_uri=https://google.com
+
+keycloack logout : http://localhost:8080/realms/cakrawala/protocol/openid-connect/logout
+
+keycloack register : http://localhost:8080/realms/cakrawala/login-actions/registration?client_id=cakrawala_client&tab_id=TI8VivVTI1w
