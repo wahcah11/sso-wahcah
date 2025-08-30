@@ -23,6 +23,7 @@ RUN mkdir -p /etc/freeradius/3.0/scripts
 COPY freeradius-config/scripts/test_api_exec.py /etc/freeradius/3.0/scripts/test_api_exec.py
 COPY freeradius-config/mods-available/exec_test /etc/freeradius/3.0/mods-available/exec_test
 COPY freeradius-config/sites-available/default /etc/freeradius/3.0/sites-enabled/default
+COPY freeradius-config/clients.conf /etc/freeradius/3.0/clients.conf
 
 # Pastikan script bisa dieksekusi
 RUN chmod +x /etc/freeradius/3.0/scripts/test_api_exec.py

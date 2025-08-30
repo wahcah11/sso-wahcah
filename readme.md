@@ -44,3 +44,16 @@ Keycloack login + redirect : http://localhost:8080/realms/cakrawala/protocol/ope
 keycloack logout : http://localhost:8080/realms/cakrawala/protocol/openid-connect/logout
 
 keycloack register : http://localhost:8080/realms/cakrawala/login-actions/registration?client_id=cakrawala_client&tab_id=TI8VivVTI1w
+
+
+---
+Setting client radius
+1. nano /etc/freeradius/3.0/clients.conf
+2. isi dengan
+client laptopB {
+    ipaddr = 172.18.0.0/16
+    secret = testing123
+    require_message_authenticator = no
+}
+
+3. restart radius
