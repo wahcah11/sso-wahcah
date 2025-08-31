@@ -31,6 +31,9 @@ services:
       # KC_HOSTNAME: sso.cakrawala.local
     ports:
       - "8080:8080"
+    volumes:
+      # - ./keycloak-themes:/opt/keycloak/themes
+      - /c/Users/wahcah/Documents/sso/keycloak-themes:/opt/keycloak/themes
     command: start-dev
     restart: unless-stopped
     networks:
