@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="${url.resourcesPath}/css/style.css" />
     <script>
         // Redirect ke halaman register
-        window.location.href = "${url.registrationUrl}";
+        //window.location.href = "${url.registrationUrl}";
     </script>
 
     <script src="${url.resourcesPath}/js/custom.js"></script>
