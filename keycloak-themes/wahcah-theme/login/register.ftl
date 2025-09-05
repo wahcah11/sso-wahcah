@@ -8,7 +8,7 @@
   <div class="login-container">
     <div class="login-box">
       <div class="login-header">
-        <img src="${url.resourcesPath}/img/logo.png" alt="MyApp Logo" class="logo"/>
+        <img src="${url.resourcesPath}/img/keycloak-logo-text.svg" alt="MyApp Logo" class="logo"/>
         <h2>Buat Akun Baru</h2>
         <p>Isi data diri untuk melanjutkan</p>
       </div>

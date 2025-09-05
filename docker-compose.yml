@@ -39,6 +39,23 @@ services:
     networks:
       - sso_network
 
+  pgadmin:
+    image: dpage/pgadmin4:8.7
+    container_name: sso_pgadmin
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    restart: unless-stopped
+    networks:
+      - sso_network
+
+  
   freeradius:
     build:
       context: ./freeradius-build
@@ -57,6 +74,8 @@ services:
 
 volumes:
   postgres_data:
+    driver: local
+  pgadmin_data:
     driver: local
 
 networks:

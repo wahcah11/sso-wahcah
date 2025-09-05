@@ -57,3 +57,6 @@ client laptopB {
 }
 
 3. restart radius
+
+# Custom atribut
+1. realm setting -> user profile -> isi name -> isi display name contoh : ${nim} -> pastikan centang semua permissions -> tambah validation
