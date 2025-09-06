@@ -1,9 +1,9 @@
-/* ==================== CUSTOM STYLES - FINAL FIX ==================== */
+/* ==================== CUSTOM STYLES - FINAL ROUND CORNERS + SCROLL ==================== */
 body {
   margin: 0;
   font-family: 'Segoe UI', Arial, sans-serif;
   background: linear-gradient(120deg, #2980b9, #6dd5fa, #ffffff);
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,10 +18,15 @@ body {
 
 .login-box {
   background: #fff;
-  padding: 30px;
-  border-radius: 16px;
+  padding: 40px 30px;
+  border-radius: 16px; /* ✅ Pastikan semua sudut rounded */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
   transition: box-shadow 0.3s ease;
+  min-height: 500px;
+  max-height: 80vh;
+  height: auto;
+  overflow-y: auto; /* ✅ Scroll hanya di box */
+  position: relative;
 }
 
 .login-box:hover {
@@ -46,9 +51,15 @@ body {
   margin: 0;
 }
 
+.login-header p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 8px;
+}
+
 /* Form Group */
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .form-group label {
@@ -56,13 +67,12 @@ body {
   font-size: 0.9rem;
   font-weight: 500;
   color: #555;
-  margin-bottom: 6px;
-  padding-left: 0; /* Hapus padding kiri label */
+  margin-bottom: 8px;
+  padding-left: 0;
   box-sizing: border-box;
   text-align: left;
 }
 
-/* Fix: Reset input styling to avoid default margins/padding from Keycloak */
 input[type="text"],
 input[type="password"] {
   width: 100%;
@@ -73,12 +83,11 @@ input[type="password"] {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   background-color: #fafafa;
   box-sizing: border-box;
-  margin: 0; /* Remove any default margin */
+  margin: 0;
   outline: none;
   text-align: left;
 }
 
-/* Focus state */
 input[type="text"]:focus,
 input[type="password"]:focus {
   border-color: #2980b9;
@@ -108,6 +117,23 @@ input[type="password"]:focus {
   transform: translateY(0);
 }
 
+/* Error Messages */
+.alert-error {
+  color: #fff;
+  background: #e74c3c;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.field-error {
+  color: #e74c3c;
+  font-size: 0.85em;
+  margin-top: 4px;
+  display: block;
+}
+
 /* Links */
 .form-links {
   text-align: center;
@@ -135,7 +161,8 @@ input[type="password"]:focus {
   }
 
   .login-box {
-    padding: 24px 20px;
+    padding: 30px 20px;
+    max-height: 85vh;
   }
 
   .login-header h2 {
