@@ -62,7 +62,8 @@ client laptopB {
 1. realm setting -> user profile -> isi name -> isi display name contoh : ${nim} -> pastikan centang semua permissions -> tambah validation
 
 # spi auto disabled
-docker cp target/spi-hello-1.0-SNAPSHOT.jar my-keycloak:/opt/keycloak/providers/
+docker cp target/spi-hello-1.0-SNAPSHOT.jar sso_keycloak:/opt/keycloak/providers/
+docker cp target/valid-nim-spi.jar sso_keycloak:/opt/keycloak/providers/
 1. copy plugin yg dibuat dengan maven (script diatas)
 2. aktifkan plugin dengan menu authenticate atau melalui event
 3. event berada pada real setting -> events -> tuliskan auto-disable
