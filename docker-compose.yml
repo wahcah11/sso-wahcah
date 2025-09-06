@@ -6,8 +6,8 @@ services:
       - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: keycloak_db
-      POSTGRES_USER: keycloak_user
-      POSTGRES_PASSWORD: your_strong_password
+      POSTGRES_USER: cakrawala
+      POSTGRES_PASSWORD: alpa123$
     restart: unless-stopped
     networks:
       - sso_network
@@ -23,10 +23,10 @@ services:
       KC_DB: postgres
       KC_DB_URL_HOST: postgres
       KC_DB_URL_DATABASE: keycloak_db
-      KC_DB_USERNAME: keycloak_user
-      KC_DB_PASSWORD: your_strong_password
-      KEYCLOAK_ADMIN: admin 
-      KEYCLOAK_ADMIN_PASSWORD: your_admin_password
+      KC_DB_USERNAME: cakrawala
+      KC_DB_PASSWORD: alpa123$
+      KEYCLOAK_ADMIN: cakrawala
+      KEYCLOAK_ADMIN_PASSWORD: alpa123$
       # --- TAMBAHKAN BARIS INI ---
       # KC_HOSTNAME: sso.cakrawala.local
     ports:
@@ -45,8 +45,8 @@ services:
     depends_on:
       - postgres
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@local.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_DEFAULT_EMAIL: admin@cakrawala.com
+      PGADMIN_DEFAULT_PASSWORD: alpa123$
     ports:
       - "5050:80"
     volumes:

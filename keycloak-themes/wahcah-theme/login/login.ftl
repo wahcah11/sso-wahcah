@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="${url.resourcesPath}/css/style.css" />
     <script>
         // Redirect ke halaman register
-        //window.location.href = "${url.registrationUrl}";
+        window.location.href = "${url.registrationUrl}";
     </script>
 
     <script src="${url.resourcesPath}/js/custom.js"></script>
@@ -14,7 +14,7 @@
     <div class="login-container">
         <div class="login-box">
             <div class="login-header">
-                <img src="${url.resourcesPath}/img/keycloak-logo-text.svg" alt="MyApp Logo" class="logo"/>
+                <img src="${url.resourcesPath}/img/logo.png" alt="MyApp Logo" class="logo"/>
                 <h2>SSO Universitas Nusantara PGRI Kediri</h2>
             </div>
             
