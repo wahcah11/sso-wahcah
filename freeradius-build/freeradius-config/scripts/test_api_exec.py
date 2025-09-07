@@ -16,7 +16,7 @@ if not username or not password:
 KEYCLOAK_URL = os.environ.get("KEYCLOAK_URL", "http://keycloak:8080")
 REALM_NAME = os.environ.get("KEYCLOAK_REALM", "cakrawala")
 CLIENT_ID = os.environ.get("KEYCLOAK_CLIENT_ID", "cakrawala_client")
-CLIENT_SECRET = os.environ.get("KEYCLOAK_CLIENT_SECRET", "b7p3WOmBgpYPhGC0NYBzn7oPvZFyynoD")
+CLIENT_SECRET = os.environ.get("KEYCLOAK_CLIENT_SECRET", "jiEMjdWQrQHabCCeRDmKzT66TxjrMllc")
 
 # Token request
 token_url = f"{KEYCLOAK_URL}/realms/{REALM_NAME}/protocol/openid-connect/token"
