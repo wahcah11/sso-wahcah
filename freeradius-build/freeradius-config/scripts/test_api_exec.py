@@ -5,6 +5,7 @@ import requests
 
 username = os.environ.get("USER_NAME", "").strip('"')
 password = os.environ.get("USER_PASSWORD", "").strip('"')
+sys.stderr.write(f"{os.environ.items()}")
 
 if not username or not password:
     sys.stdout.write('Reply-Message := "Missing credentials"\n')
